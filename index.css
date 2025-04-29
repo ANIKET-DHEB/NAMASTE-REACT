@@ -1276,6 +1276,58 @@ p {
   {
     font-size: 3rem;
   }
+  .menu-card
+  {
+    display: flow-root;
+  }
+  .cart-container {
+   max-width: 400px;
 }
+}
+
+@media (max-width: 412px) {
+  .search-box
+  {
+    width: 15rem;
+    font-size: 12px;
+  }
+  .res-card {
+    width: 140px;
+}
+.cart-container {
+  max-width: 300px;
+}
+.checkout-container
+{
+  max-width: 300px;
+}
+.payment-container
+{
+  max-width: 310px;
+}
+.footer-column {
+  min-width: 111px;
+  margin-bottom: 10px;
+  flex: none;
+}
+.res-card img {
+  height: 110px;
+}
+.dish-image {
+  height: 180px;
+}
+.menu-details
+{
+  margin-top: 1rem;
+}
+.cart-button 
+{
+  margin: 10px 0;
+}
+}
+
+
+
+
 
 
