@@ -23,7 +23,7 @@
   "description": "Namaste React",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html",
+  "build": "parcel build index.html --dist-dir build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
