@@ -1285,7 +1285,7 @@ p {
 }
 }
 
-@media (max-width: 412px) {
+@media (max-width: 440px) {
   .search-box
   {
     width: 15rem;
