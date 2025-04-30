@@ -45,14 +45,23 @@ const Footer = () => {
             <a href="#">Terms</a>
           </div>
 
-          <div className="footer-column social-links">
-            <h3>SOCIAL LINKS</h3>
-            <div className="social-icons">
-              <a href="#"><i className="fab fa-instagram"></i></a>
-              <a href="#"><i className="fab fa-facebook"></i></a>
-              <a href="#"><i className="fab fa-twitter"></i></a>
-              <a href="#"><i className="fab fa-youtube"></i></a>
-            </div>
+            <div className="footer-column social-links">
+   <h3>SOCIAL LINKS</h3>
+  <div className="social-icons">
+    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+      <i className="fab fa-instagram"></i>
+    </a>
+    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+      <i className="fab fa-facebook"></i>
+    </a>
+    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+      <i className="fab fa-twitter"></i>
+    </a>
+    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+      <i className="fab fa-youtube"></i>
+    </a>
+  </div>
+
             <div className="store-buttons">
             <a href="https://apps.apple.com/">
             <img  className="appicon"src="https://ci3.googleusercontent.com/meips/ADKq_Nb3K_tyUQe5MJXq5TBbkdaPEqtXrdx4s9uorYLmo9huzT4rm90pNvfQ1b9xHBvrhCLEUUUTw3M9s4lohvyz5NVd9E8DT7ISkQbQc4Di_FDKjweYu5I=s0-d-e1-ft#https://static.licdn.com/aero-v1/sc/h/76yzkd0h5kiv27lrd4yaenylk" alt="Download on the App Store" />

@@ -518,7 +518,7 @@ p {
  
  .form-group input,
  .form-group textarea {
-   width: 100%;
+   width: 95%;
    padding: 12px;
    border: 1px solid #ccc;
    border-radius: 5px;
@@ -1326,7 +1326,29 @@ p {
 }
 }
 
+@media (max-width: 375px)
+{
+  .search-box {
+    width: 11rem;
+    font-size: 9px;
+}
+.res-card {
+  width: 115px;
+}
+.res-card img {
+  height: 90px;
+}
+.res-card img {
+  height: 90px;
+}
+.res-card img {
+  height: 90px;
+}
+.text {
+  font-size: medium;
+}
 
+}
 
 
 
