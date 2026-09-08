@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import "./LoginSignup.css"; // Importing CSS for styling
+import "../styles/LoginSignup.css";
 
 const LoginSignup = ({ onClose }) => {
     const [isSignup, setIsSignup] = useState(false);
@@ -7,23 +7,76 @@ const LoginSignup = ({ onClose }) => {
     return (
         <div className="login-container">
             <div className="form-container">
-                <button className="close-btn" onClick={onClose}>×</button>
-                <h2>{isSignup ? "Sign Up" : "Login"}</h2>
-                <div className="input-group">
-                    <input type="text" placeholder="Username" required />
+
+                {/* Close Button */}
+                <button className="close-btn" onClick={onClose}>
+                    ×
+                </button>
+
+                {/* Header */}
+                <div className="auth-header">
+                    <h2>{isSignup ? "Create Account" : "Welcome Back!"}</h2>
+
+                    <p>
+                        {isSignup
+                            ? "Sign up to start ordering delicious food."
+                            : "Login to continue ordering your favorite food."}
+                    </p>
                 </div>
+
+                {/* Username */}
+                <div className="input-group">
+                    <label>Username</label>
+                    <input
+                        type="text"
+                        placeholder="Enter your username"
+                        required
+                    />
+                </div>
+
+                {/* Email - Signup Only */}
                 {isSignup && (
                     <div className="input-group">
-                        <input type="email" placeholder="Email" required />
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            placeholder="Enter your email"
+                            required
+                        />
                     </div>
                 )}
+
+                {/* Password */}
                 <div className="input-group">
-                    <input type="password" placeholder="Password" required />
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        placeholder="Enter your password"
+                        required
+                    />
                 </div>
-                <button className="auth-btn">{isSignup ? "Sign Up" : "Login"}</button>
-                <p className="toggle-text" onClick={() => setIsSignup(!isSignup)}>
-                    {isSignup ? "Already have an account? Login" : "New user? Sign up"}
-                </p>
+
+                {/* Login Button */}
+                <button className="auth-btn">
+                    {isSignup ? "Create Account" : "Login"}
+                </button>
+
+                {/* Toggle */}
+                <div className="toggle-container">
+                    <span>
+                        {isSignup
+                            ? "Already have an account?"
+                            : "Don't have an account?"}
+                    </span>
+
+                    <button
+                        className="toggle-btn"
+                        onClick={() => setIsSignup(!isSignup)}
+                    >
+                        {isSignup ? "Login" : "Sign Up"}
+                    </button>
+                </div>
+
             </div>
         </div>
     );

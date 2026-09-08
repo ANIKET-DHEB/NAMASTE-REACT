@@ -1,0 +1,306 @@
+/* ================================
+   LOGIN OVERLAY
+================================ */
+
+.login-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    z-index: 2000;
+}
+
+
+/* ================================
+   FORM CARD
+================================ */
+
+.form-container {
+    position: relative;
+
+    width: 420px;
+    max-width: 100%;
+
+    background: #ffffff;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+
+    animation: loginPopup 0.3s ease;
+}
+
+
+/* Popup Animation */
+
+@keyframes loginPopup {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ================================
+   CLOSE BUTTON
+================================ */
+
+.close-btn {
+    position: absolute;
+
+    top: 15px;
+    right: 18px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    background: #f5f5f5;
+
+    color: #555;
+
+    font-size: 25px;
+
+    line-height: 30px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.close-btn:hover {
+    background: #ff6433;
+    color: white;
+}
+
+
+/* ================================
+   AUTH HEADER
+================================ */
+
+.auth-header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.auth-header h2 {
+    margin: 0;
+
+    color: #222;
+
+    font-size: 30px;
+
+    font-weight: 700;
+}
+
+.auth-header p {
+    margin-top: 8px;
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* ================================
+   INPUT GROUP
+================================ */
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #333;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    background: #fafafa;
+
+    color: #222;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.3s ease;
+
+    box-sizing: border-box;
+}
+
+.input-group input::placeholder {
+    color: #aaa;
+}
+
+.input-group input:focus {
+    border-color: #ff6433;
+
+    background: #ffffff;
+
+    box-shadow: 0 0 0 3px rgba(255, 100, 51, 0.12);
+}
+
+
+/* ================================
+   AUTH BUTTON
+================================ */
+
+.auth-btn {
+    width: 100%;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #ff6433;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    margin-top: 5px;
+
+    transition: 0.3s ease;
+}
+
+.auth-btn:hover {
+    background: #e94f20;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 8px 20px rgba(255, 100, 51, 0.25);
+}
+
+
+/* ================================
+   TOGGLE
+================================ */
+
+.toggle-container {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 22px;
+
+    font-size: 14px;
+
+    color: #777;
+}
+
+.toggle-btn {
+    border: none;
+
+    background: transparent;
+
+    color: #ff6433;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    padding: 0;
+}
+
+.toggle-btn:hover {
+    text-decoration: underline;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 500px) {
+
+    .login-container {
+        padding: 15px;
+    }
+
+    .form-container {
+        width: 100%;
+
+        padding: 32px 25px;
+
+        border-radius: 16px;
+    }
+
+    .auth-header {
+        margin-bottom: 25px;
+    }
+
+    .auth-header h2 {
+        font-size: 26px;
+    }
+
+    .auth-header p {
+        font-size: 13px;
+    }
+
+    .input-group {
+        margin-bottom: 17px;
+    }
+
+    .input-group input {
+        height: 48px;
+    }
+
+    .auth-btn {
+        height: 48px;
+    }
+}

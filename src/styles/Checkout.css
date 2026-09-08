@@ -1,0 +1,705 @@
+/* ============================================
+   SWIFTEATS CHECKOUT
+============================================ */
+
+.checkout-page {
+    width: min(1150px, 92%);
+    margin: 45px auto 70px;
+    font-family: Arial, sans-serif;
+    color: #222;
+}
+
+
+/* ============================================
+   TOP HEADER
+============================================ */
+
+.checkout-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+}
+
+.checkout-small-title {
+    margin: 0 0 5px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ff5a36;
+}
+
+.checkout-top h1 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.checkout-subtitle {
+    margin: 8px 0 0;
+    color: #777;
+    font-size: 15px;
+}
+
+.secure-badge {
+    padding: 10px 16px;
+    background: #f0f8ff;
+    color: #0056b3;
+    border: 1px solid #d9ecff;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* ============================================
+   MAIN LAYOUT
+============================================ */
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 1.25fr 0.85fr;
+    gap: 25px;
+    align-items: start;
+}
+
+
+/* ============================================
+   LEFT CARDS
+============================================ */
+
+.checkout-card {
+    background: #ffffff;
+    border: 1px solid #e9e9e9;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+}
+
+
+/* ============================================
+   CARD HEADING
+============================================ */
+
+.card-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.heading-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff1ed;
+    border-radius: 12px;
+    font-size: 21px;
+}
+
+.card-heading h2 {
+    margin: 0 0 5px;
+    font-size: 20px;
+}
+
+.card-heading p {
+    margin: 0;
+    color: #777;
+    font-size: 13px;
+}
+
+
+/* ============================================
+   ADDRESS CARD
+============================================ */
+
+.address-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px;
+    margin-bottom: 12px;
+    border: 1.5px solid #e4e4e4;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #fff;
+    transition: 0.2s ease;
+}
+
+.address-card:hover {
+    border-color: #ff5a36;
+    background: #fffaf8;
+}
+
+.address-selected {
+    border-color: #ff5a36;
+    background: #fff8f5;
+    box-shadow: 0 3px 12px rgba(255, 90, 54, 0.08);
+}
+
+
+/* RADIO */
+
+.address-radio {
+    padding-top: 2px;
+}
+
+.address-radio input {
+    width: 17px;
+    height: 17px;
+    accent-color: #ff5a36;
+    cursor: pointer;
+}
+
+
+/* ADDRESS CONTENT */
+
+.address-content {
+    flex: 1;
+}
+
+.address-name-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 7px;
+}
+
+.address-name {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.address-tag {
+    padding: 3px 7px;
+    border-radius: 4px;
+    background: #ffe7df;
+    color: #ff5a36;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.address-content p {
+    margin: 0;
+    max-width: 600px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+}
+
+
+/* CHECK */
+
+.selected-check {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #ff5a36;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* ============================================
+   DELIVERY INFORMATION
+============================================ */
+
+.delivery-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.info-box {
+    display: flex;
+    gap: 12px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #f8f9fa;
+}
+
+.info-icon {
+    font-size: 21px;
+}
+
+.info-box h3 {
+    margin: 0 0 5px;
+    font-size: 14px;
+}
+
+.info-box p {
+    margin: 0;
+    color: #777;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* ============================================
+   RIGHT ORDER CARD
+============================================ */
+
+.order-card {
+    background: #ffffff;
+    border: 1px solid #e9e9e9;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+    position: sticky;
+    top: 90px;
+}
+
+
+/* HEADER */
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.order-card-header h2 {
+    margin: 0 0 5px;
+    font-size: 20px;
+}
+
+.order-card-header p {
+    margin: 0;
+    color: #888;
+    font-size: 13px;
+}
+
+.bag-icon {
+    width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff1ed;
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+
+/* ============================================
+   CHECKOUT ITEMS
+============================================ */
+
+.checkout-items {
+    padding: 18px 0;
+}
+
+.checkout-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.checkout-item img {
+    width: 58px;
+    height: 58px;
+    object-fit: cover;
+    border-radius: 9px;
+}
+
+.checkout-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.checkout-item-info h3 {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.checkout-item-info p {
+    margin: 0;
+    color: #888;
+    font-size: 12px;
+}
+
+.checkout-item > strong {
+    font-size: 14px;
+}
+
+
+/* ============================================
+   PRICE SECTION
+============================================ */
+
+.price-section {
+    padding: 15px 0;
+    border-top: 1px solid #eeeeee;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.price-row span:last-child {
+    color: #333;
+    font-weight: 500;
+}
+
+.delivery-price {
+    color: #16803c !important;
+}
+
+
+/* ============================================
+   GRAND TOTAL
+============================================ */
+
+.grand-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    margin-top: 5px;
+    border-top: 1px dashed #ddd;
+}
+
+.grand-total div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.grand-total span {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.grand-total small {
+    color: #999;
+    font-size: 10px;
+}
+
+.grand-total strong {
+    font-size: 23px;
+    color: #ff5a36;
+}
+
+
+/* ============================================
+   PAY NOW
+============================================ */
+
+.pay-now {
+    width: 100%;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border: none;
+    border-radius: 10px;
+    background: #ff5a36;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.pay-now:hover {
+    background: #e94c2c;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(255, 90, 54, 0.25);
+}
+
+.pay-now span:last-child {
+    font-size: 22px;
+}
+
+
+/* ============================================
+   SECURITY
+============================================ */
+
+.payment-security {
+    text-align: center;
+    margin-top: 13px;
+    color: #888;
+    font-size: 11px;
+}
+
+
+/* ============================================
+   TABLET
+============================================ */
+
+@media (max-width: 850px) {
+
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .order-card {
+        position: static;
+    }
+
+    .checkout-right {
+        order: -1;
+    }
+
+    .checkout-top h1 {
+        font-size: 30px;
+    }
+}
+
+
+/* ============================================
+   MOBILE
+============================================ */
+
+@media (max-width: 600px) {
+
+    .checkout-page {
+        width: 92%;
+        margin: 25px auto 45px;
+    }
+
+
+    /* HEADER */
+
+    .checkout-top {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .checkout-top h1 {
+        font-size: 27px;
+    }
+
+    .checkout-subtitle {
+        font-size: 13px;
+    }
+
+    .secure-badge {
+        display: inline-block;
+        margin-top: 14px;
+        font-size: 11px;
+        padding: 8px 12px;
+    }
+
+
+    /* LAYOUT */
+
+    .checkout-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .checkout-left,
+    .checkout-right {
+        width: 100%;
+    }
+
+    .checkout-right {
+        order: -1;
+    }
+
+
+    /* ORDER */
+
+    .order-card {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 17px;
+        border-radius: 13px;
+    }
+
+    .order-card-header {
+        padding-bottom: 14px;
+    }
+
+    .order-card-header h2 {
+        font-size: 18px;
+    }
+
+    .bag-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 17px;
+    }
+
+
+    /* ITEMS */
+
+    .checkout-items {
+        padding: 12px 0;
+    }
+
+    .checkout-item {
+        padding: 8px 0;
+    }
+
+    .checkout-item img {
+        width: 52px;
+        height: 52px;
+    }
+
+    .checkout-item-info h3 {
+        font-size: 13px;
+    }
+
+    .checkout-item > strong {
+        font-size: 13px;
+    }
+
+
+    /* PRICE */
+
+    .price-section {
+        padding: 10px 0;
+    }
+
+    .price-row {
+        padding: 6px 0;
+        font-size: 13px;
+    }
+
+
+    /* TOTAL */
+
+    .grand-total {
+        padding: 15px 0;
+    }
+
+    .grand-total span {
+        font-size: 14px;
+    }
+
+    .grand-total strong {
+        font-size: 21px;
+    }
+
+
+    /* BUTTON */
+
+    .pay-now {
+        height: 48px;
+        padding: 0 16px;
+        font-size: 14px;
+    }
+
+
+    /* LEFT CARD */
+
+    .checkout-card {
+        padding: 17px;
+        border-radius: 13px;
+    }
+
+    .card-heading {
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .heading-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .card-heading h2 {
+        font-size: 17px;
+    }
+
+    .card-heading p {
+        font-size: 11px;
+    }
+
+
+    /* ADDRESS */
+
+    .address-card {
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .address-name {
+        font-size: 14px;
+    }
+
+    .address-content p {
+        font-size: 12px;
+    }
+
+    .selected-check {
+        width: 21px;
+        height: 21px;
+        font-size: 11px;
+    }
+
+
+    /* DELIVERY INFO */
+
+    .delivery-info {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .info-box {
+        padding: 13px;
+    }
+
+}
+
+
+/* ============================================
+   VERY SMALL MOBILE
+============================================ */
+
+@media (max-width: 380px) {
+
+    .checkout-page {
+        width: 94%;
+    }
+
+    .checkout-top h1 {
+        font-size: 24px;
+    }
+
+    .checkout-subtitle {
+        font-size: 12px;
+    }
+
+    .order-card {
+        padding: 14px;
+    }
+
+    .checkout-card {
+        padding: 14px;
+    }
+
+    .grand-total strong {
+        font-size: 19px;
+    }
+
+    .pay-now {
+        font-size: 13px;
+    }
+
+}

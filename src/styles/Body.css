@@ -1,0 +1,745 @@
+/* ==============================
+   BODY
+================================ */
+
+.body {
+    width: 100%;
+    background: #ffffff;
+    color: #222;
+}
+
+
+/* ==============================
+   HERO SECTION
+================================ */
+
+.food-hero {
+    position: relative;
+    min-height: 430px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&auto=format&fit=crop&q=85");
+    background-size: cover;
+    background-position: center;
+
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.58);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: 90%;
+    max-width: 850px;
+
+    text-align: center;
+
+    color: white;
+}
+
+.hero-badge {
+    display: inline-block;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    margin-bottom: 18px;
+}
+
+.hero-content h1 {
+    font-size: 58px;
+    line-height: 1.05;
+
+    margin: 0 0 18px;
+
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.hero-content h1 span {
+    color: #ff6b35;
+}
+
+.hero-content p {
+    font-size: 19px;
+
+    margin: 0 auto 28px;
+
+    color: #f5f5f5;
+}
+
+
+/* ==============================
+   HERO SEARCH
+================================ */
+
+.hero-search {
+    width: 100%;
+    max-width: 650px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+
+    background: white;
+
+    border-radius: 50px;
+
+    padding: 6px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+}
+
+.search-icon {
+    color: #777;
+
+    font-size: 25px;
+
+    margin-left: 18px;
+}
+
+.hero-search input {
+    flex: 1;
+
+    height: 48px;
+
+    border: none;
+    outline: none;
+
+    padding: 0 15px;
+
+    font-size: 15px;
+
+    color: #333;
+}
+
+.hero-search input::placeholder {
+    color: #999;
+}
+
+.hero-search button {
+    height: 48px;
+
+    padding: 0 28px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #ff6b35;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.hero-search button:hover {
+    background: #e95722;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==============================
+   CATEGORY SECTION
+================================ */
+
+.category-section {
+    width: 90%;
+    max-width: 1250px;
+
+    margin: 55px auto 30px;
+}
+
+.section-heading {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.small-heading {
+    display: block;
+
+    color: #ff6b35;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 7px;
+}
+
+.section-heading h2 {
+    margin: 0;
+
+    font-size: 30px;
+
+    font-weight: 750;
+
+    color: #222;
+}
+
+.view-all-btn {
+    border: none;
+
+    background: transparent;
+
+    color: #ff6b35;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.view-all-btn:hover {
+    text-decoration: underline;
+}
+
+
+/* ==============================
+   CATEGORY LIST
+================================ */
+
+.category-list {
+    display: flex;
+
+    gap: 59px;
+
+    overflow-x: auto;
+
+    padding: 5px 3px 12px;
+
+    scrollbar-width: none;
+}
+
+.category-list::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* ==============================
+   CATEGORY CARD
+================================ */
+
+.category-card {
+    min-width: 150px;
+
+    height: 120px;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 16px;
+
+    background: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+
+    box-sizing: border-box;
+}
+
+.category-card span {
+    font-size: 32px;
+
+    margin-bottom: 7px;
+}
+
+.category-card p {
+    margin: 0;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #333;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #ff6b35;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ==============================
+   RESTAURANT SECTION
+================================ */
+
+.restaurant-section {
+    width: 90%;
+    max-width: 1250px;
+
+    margin: 50px auto 80px;
+}
+
+.restaurant-heading {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+}
+
+.restaurant-heading h2 {
+    margin: 0 0 6px;
+
+    font-size: 32px;
+
+    font-weight: 750;
+
+    color: #222;
+}
+
+.restaurant-heading p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 15px;
+}
+
+.top-rated-btn {
+    border: none;
+
+    background: #fff4e8;
+
+    color: #e85d04;
+
+    padding: 11px 18px;
+
+    border-radius: 25px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.top-rated-btn:hover {
+    background: #ff6b35;
+
+    color: white;
+}
+
+
+/* ==============================
+   RESTAURANT GRID
+================================ */
+
+.res-container {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 28px;
+
+    padding: 5px 0;
+}
+
+
+/* ==============================
+   RESTAURANT LINK
+================================ */
+
+.restaurant-link {
+    text-decoration: none;
+
+    color: inherit;
+
+    display: block;
+}
+
+
+/* ==============================
+   NO RESULTS
+================================ */
+
+.no-results {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 70px 20px;
+}
+
+.no-results > div {
+    font-size: 55px;
+
+    margin-bottom: 10px;
+}
+
+.no-results h2 {
+    margin: 5px 0 8px;
+
+    font-size: 25px;
+}
+
+.no-results p {
+    color: #777;
+
+    margin-bottom: 20px;
+}
+
+.no-results button {
+    border: none;
+
+    background: #ff6b35;
+
+    color: white;
+
+    padding: 12px 22px;
+
+    border-radius: 25px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.no-results button:hover {
+    background: #e95722;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==============================
+   RESPONSIVE
+================================ */
+
+
+/* ---------- TABLET ---------- */
+
+@media (max-width: 1100px) {
+
+    .res-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+    }
+
+    .category-list {
+        gap: 25px;
+    }
+}
+
+
+/* ---------- SMALL TABLET ---------- */
+
+@media (max-width: 800px) {
+
+    .food-hero {
+        min-height: 400px;
+    }
+
+    .hero-content h1 {
+        font-size: 40px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .res-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .restaurant-heading {
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .category-list {
+        gap: 18px;
+
+        overflow-x: auto;
+
+        padding-bottom: 12px;
+    }
+
+    .category-card {
+        min-width: 135px;
+
+        height: 110px;
+    }
+}
+
+
+/* ==============================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+
+    .category-section,
+    .restaurant-section {
+        width: 92%;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    /* ==========================
+       CATEGORY MOBILE GRID
+    ========================== */
+
+    .category-list {
+        display: grid;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 14px;
+
+        width: 100%;
+
+        overflow: visible;
+
+        padding: 4px 0 10px;
+    }
+
+    .category-card {
+        width: 100%;
+
+        min-width: 0;
+
+        height: 105px;
+
+        border-radius: 15px;
+
+        padding: 10px;
+
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    }
+
+    .category-card span {
+        font-size: 30px;
+
+        margin-bottom: 6px;
+    }
+
+    .category-card p {
+        font-size: 13px;
+
+        font-weight: 600;
+    }
+
+    .category-card:hover {
+        transform: translateY(-3px);
+    }
+
+
+    /* ==========================
+       SECTION HEADING
+    ========================== */
+
+    .section-heading,
+    .restaurant-heading {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+        margin-bottom: 20px;
+    }
+
+    .section-heading h2 {
+        font-size: 26px;
+    }
+
+    .restaurant-heading h2 {
+        font-size: 27px;
+    }
+
+    .restaurant-heading p {
+        font-size: 14px;
+    }
+
+
+    /* ==========================
+       HERO
+    ========================== */
+
+    .hero-content {
+        width: 94%;
+    }
+
+    .hero-content h1 {
+        font-size: 35px;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+    }
+
+    .hero-search {
+        max-width: 95%;
+    }
+
+    .hero-search input {
+        min-width: 0;
+
+        font-size: 13px;
+    }
+
+    .hero-search button {
+        padding: 0 18px;
+    }
+
+
+    /* ==========================
+       RESTAURANTS
+    ========================== */
+
+    .res-container {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+}
+
+
+/* ==============================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 480px) {
+
+    .category-section,
+    .restaurant-section {
+        width: 92%;
+    }
+
+    .category-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+    .category-card {
+        height: 100px;
+
+        border-radius: 14px;
+    }
+
+    .category-card span {
+        font-size: 28px;
+    }
+
+    .category-card p {
+        font-size: 13px;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+}
+
+
+/* ==============================
+   VERY SMALL MOBILE
+================================ */
+
+@media (max-width: 400px) {
+
+    .category-section,
+    .restaurant-section {
+        width: 94%;
+    }
+
+    .category-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+    }
+
+    .category-card {
+        height: 95px;
+
+        border-radius: 13px;
+    }
+
+    .category-card span {
+        font-size: 26px;
+
+        margin-bottom: 5px;
+    }
+
+    .category-card p {
+        font-size: 12px;
+    }
+
+    .hero-content h1 {
+        font-size: 30px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .hero-search {
+        padding: 4px;
+    }
+
+    .search-icon {
+        margin-left: 10px;
+
+        font-size: 22px;
+    }
+
+    .hero-search button {
+        padding: 0 14px;
+
+        font-size: 13px;
+    }
+}

@@ -1,0 +1,816 @@
+/* =========================================
+   SWIFTEATS - RESTAURANT MENU
+========================================= */
+
+.menu-page {
+    width: min(1050px, 92%);
+    margin: 35px auto 50px;
+    font-family: Arial, sans-serif;
+    color: #222;
+}
+
+/* =========================================
+   MAIN CARD
+========================================= */
+
+.menu-card {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 35px;
+
+    background: #ffffff;
+
+    padding: 25px;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.08);
+
+    border: 1px solid #eeeeee;
+
+    overflow: hidden;
+}
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.menu-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 350px;
+}
+
+.dish-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 17px;
+
+    display: block;
+}
+
+/* =========================================
+   DISCOUNT BADGE
+========================================= */
+
+.discount-badge {
+    position: absolute;
+
+    top: 15px;
+    left: 15px;
+
+    background: #ff5a36;
+    color: white;
+
+    padding: 8px 13px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.menu-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+}
+
+.restaurant-label {
+    display: inline-block;
+
+    width: fit-content;
+
+    padding: 6px 12px;
+
+    margin-bottom: 10px;
+
+    background: #fff1ed;
+
+    color: #ff5a36;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.dish-name {
+    margin: 0 0 8px;
+
+    font-size: 30px;
+    line-height: 1.2;
+
+    color: #222;
+}
+
+.rating-row {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 15px;
+
+    font-size: 13px;
+
+    color: #777;
+}
+
+.rating {
+    padding: 5px 9px;
+
+    border-radius: 5px;
+
+    background: #168a45;
+
+    color: white;
+
+    font-weight: 700;
+}
+
+.dot {
+    color: #bbb;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.dish-description {
+    margin: 0 0 18px;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    color: #666;
+}
+
+.read-more {
+    margin-left: 5px;
+
+    color: #ff5a36;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+/* =========================================
+   OFFER
+========================================= */
+
+.discount-box {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 15px;
+
+    margin-bottom: 20px;
+
+    background: linear-gradient(
+        135deg,
+        #fff7e8,
+        #fff2df
+    );
+
+    border: 1px solid #ffe1b5;
+
+    border-radius: 12px;
+}
+
+.offer-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: #ff5a36;
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    flex-shrink: 0;
+}
+
+.discount-box strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #222;
+
+    font-size: 14px;
+}
+
+.discount-box p {
+    margin: 0;
+
+    font-size: 12px;
+
+    color: #777;
+}
+
+.discount-box p span {
+    color: #168a45;
+
+    font-weight: 700;
+}
+
+/* =========================================
+   PRICE + QUANTITY
+========================================= */
+
+.purchase-row {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+.price-area {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.price-label {
+    font-size: 12px;
+
+    color: #999;
+}
+
+.price {
+    font-size: 25px;
+
+    font-weight: 700;
+
+    color: #222;
+}
+
+/* =========================================
+   QUANTITY
+========================================= */
+
+.quantity {
+    display: flex;
+    align-items: center;
+
+    border: 1px solid #ddd;
+
+    border-radius: 9px;
+
+    overflow: hidden;
+
+    background: white;
+}
+
+.quantity button {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    background: #f7f7f7;
+
+    color: #ff5a36;
+
+    font-size: 19px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.quantity button:hover:not(:disabled) {
+    background: #ff5a36;
+
+    color: white;
+}
+
+.quantity button:disabled {
+    color: #bbb;
+
+    cursor: not-allowed;
+}
+
+.quantity span {
+    width: 38px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: #222;
+}
+
+/* =========================================
+   ADD TO CART
+========================================= */
+
+.add-to-cart-button {
+    width: 100%;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #ff653f,
+        #ff4d2e
+    );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 15px rgba(255, 90, 54, 0.25);
+
+    transition: all 0.2s ease;
+}
+
+.add-to-cart-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 9px 20px rgba(255, 90, 54, 0.3);
+}
+
+/* =========================================
+   NUTRITION
+========================================= */
+
+.nutrition-section {
+    margin-top: 35px;
+}
+
+.section-heading {
+    margin-bottom: 16px;
+}
+
+.section-heading h2 {
+    margin: 0 0 5px;
+
+    font-size: 24px;
+
+    color: #222;
+}
+
+.section-heading p {
+    margin: 0;
+
+    font-size: 13px;
+
+    color: #888;
+}
+
+/* =========================================
+   NUTRITION CARDS
+========================================= */
+
+.nutrition-box {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.nutrition-item {
+    position: relative;
+
+    padding: 20px 10px;
+
+    min-height: 145px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background: white;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.05);
+
+    transition: 0.2s ease;
+}
+
+.nutrition-item:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.nutrition-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    margin-bottom: 9px;
+
+    background: #fff3ef;
+
+    border-radius: 50%;
+
+    font-size: 19px;
+}
+
+.nutrition-item p {
+    margin: 0 0 5px;
+
+    font-size: 13px;
+
+    color: #777;
+}
+
+.nutrition-item h3 {
+    margin: 0 0 3px;
+
+    font-size: 23px;
+
+    color: #222;
+}
+
+.nutrition-item span {
+    font-size: 11px;
+
+    color: #999;
+}
+
+/* =========================================
+   VIEW CART
+========================================= */
+
+.cart-button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    height: 50px;
+
+    margin-top: 20px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #1769c2;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.cart-button:hover {
+    background: #0d58a8;
+
+    transform: translateY(-1px);
+}
+
+.cart-button .arrow {
+    font-size: 18px;
+}
+
+/* =========================================
+   NOT FOUND
+========================================= */
+
+.menu-not-found {
+    width: 90%;
+
+    max-width: 500px;
+
+    margin: 100px auto;
+
+    text-align: center;
+}
+
+.menu-not-found button {
+    padding: 12px 25px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #ff5a36;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 850px) {
+
+    .menu-page {
+        width: 94%;
+    }
+
+    .menu-card {
+        grid-template-columns: 330px 1fr;
+
+        gap: 25px;
+
+        padding: 20px;
+    }
+
+    .menu-image-wrapper {
+        height: 320px;
+    }
+
+    .dish-name {
+        font-size: 25px;
+    }
+
+    .nutrition-box {
+        gap: 12px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+    .menu-page {
+        width: 92%;
+
+        margin: 20px auto 35px;
+    }
+
+    /* Main card */
+
+    .menu-card {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 20px;
+
+        padding: 14px;
+
+        border-radius: 18px;
+    }
+
+    /* Image */
+
+    .menu-image-wrapper {
+        width: 100%;
+
+        height: 240px;
+    }
+
+    .dish-image {
+        border-radius: 13px;
+    }
+
+    .discount-badge {
+        top: 12px;
+        left: 12px;
+
+        padding: 7px 11px;
+
+        font-size: 12px;
+    }
+
+    /* Details */
+
+    .menu-details {
+        width: 100%;
+    }
+
+    .restaurant-label {
+        font-size: 12px;
+
+        padding: 5px 10px;
+
+        margin-bottom: 8px;
+    }
+
+    .dish-name {
+        font-size: 23px;
+
+        line-height: 1.25;
+    }
+
+    .rating-row {
+        margin-bottom: 12px;
+
+        font-size: 12px;
+    }
+
+    .dish-description {
+        font-size: 13px;
+
+        line-height: 1.6;
+
+        margin-bottom: 15px;
+    }
+
+    /* Offer */
+
+    .discount-box {
+        padding: 11px;
+
+        margin-bottom: 17px;
+    }
+
+    .offer-icon {
+        width: 35px;
+        height: 35px;
+
+        font-size: 16px;
+    }
+
+    /* Price */
+
+    .purchase-row {
+        margin-bottom: 13px;
+    }
+
+    .price {
+        font-size: 23px;
+    }
+
+    .quantity button {
+        width: 36px;
+        height: 36px;
+    }
+
+    .quantity span {
+        width: 35px;
+    }
+
+    .add-to-cart-button {
+        height: 46px;
+    }
+
+    /* Nutrition */
+
+    .nutrition-section {
+        margin-top: 27px;
+    }
+
+    .section-heading h2 {
+        font-size: 21px;
+    }
+
+    .section-heading p {
+        font-size: 11px;
+    }
+
+    .nutrition-box {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+    .nutrition-item {
+        min-height: 130px;
+
+        padding: 15px 8px;
+    }
+
+    .nutrition-icon {
+        width: 38px;
+        height: 38px;
+
+        font-size: 17px;
+    }
+
+    .nutrition-item h3 {
+        font-size: 20px;
+    }
+
+    /* Cart */
+
+    .cart-button {
+        height: 47px;
+
+        margin-top: 15px;
+    }
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .menu-page {
+        width: 94%;
+    }
+
+    .menu-card {
+        padding: 11px;
+    }
+
+    .menu-image-wrapper {
+        height: 210px;
+    }
+
+    .dish-name {
+        font-size: 20px;
+    }
+
+    .dish-description {
+        font-size: 12px;
+    }
+
+    .discount-box {
+        gap: 8px;
+    }
+
+    .discount-box strong {
+        font-size: 12px;
+    }
+
+    .discount-box p {
+        font-size: 10px;
+    }
+
+    .price {
+        font-size: 21px;
+    }
+
+    .nutrition-item {
+        min-height: 120px;
+    }
+
+    .nutrition-item h3 {
+        font-size: 18px;
+    }
+
+    .nutrition-item p {
+        font-size: 12px;
+    }
+}

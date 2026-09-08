@@ -1,33 +1,53 @@
-import { CDN_URL } from "../utils/constants";
-const RestaurantCard =(props) =>{
-const {resData} = (props)
-    const {
-        name,
-        img,
-        avgRating,
-        cuisines =[],
-        // costForTwo,
-        deliveryTime,
-    }=resData?.data;
-    
-return(
- <div className="res-container">
-    <div className="res-card" style={{backgroundColor:"rgb(225 225 225)"}}>
-        <img className="res-logo" src={img [0]} alt={name} />
-      
-       <h3 className="res-name">{name}</h3>
-       <h4 className="cuisins">{cuisines .join(" ,")}</h4>
-       <h4 className="rating">{avgRating} Stars</h4>
-       {/* <h4 className="price">₹ {costForTwo} </h4> */}
-       <h4 className="time">{deliveryTime} Minutes</h4>
+import "../styles/RestaurantCard.css";
 
-     
+const RestaurantCard = ({ resData }) => {
+  const {
+    name,
+    img,
+    avgRating,
+    cuisines = [],
+    deliveryTime,
+  } = resData?.data || {};
+
+  return (
+    <div className="res-card">
+
+      <div className="res-image-container">
+        <img
+          className="res-logo"
+          src={img?.[0]}
+          alt={name}
+        />
+
+        
+      </div>
+
+      <div className="res-content">
+
+        <h3 className="res-name">
+          {name}
+        </h3>
+
+        <p className="cuisines">
+          {cuisines.join(", ")}
+        </p>
+
+        <div className="res-info">
+
+          <span className="rating">
+            ★ {avgRating}
+          </span>
+
+          <span className="time">
+            🕐 {deliveryTime} min
+          </span>
+
+        </div>
+
+      </div>
+
     </div>
-    </div>
-)
-}
+  );
+};
 
 export default RestaurantCard;
-
-
-

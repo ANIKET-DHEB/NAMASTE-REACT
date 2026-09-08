@@ -1,0 +1,461 @@
+/* =========================================
+   MODERN RESTAURANT CARD
+========================================= */
+
+.restaurant-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.res-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 22px;
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.04),
+        0 12px 30px rgba(0, 0, 0, 0.05);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+
+    padding: 9px;
+    box-sizing: border-box;
+
+    cursor: pointer;
+}
+
+/* Hover */
+
+.res-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #f1f1f1;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.07),
+        0 20px 45px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================
+   IMAGE AREA
+========================================= */
+
+.res-card img,
+.res-logo {
+    width: 100%;
+    height: 205px;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+
+    display: block;
+
+    transition: transform 0.45s ease;
+}
+
+/* Image zoom */
+
+.res-card:hover img,
+.res-card:hover .res-logo {
+    transform: scale(1.025);
+}
+
+
+/* =========================================
+   IMAGE WRAPPER EFFECT
+========================================= */
+
+.res-card::after {
+    content: "";
+
+    position: absolute;
+
+    top: 9px;
+    left: 9px;
+    right: 9px;
+
+    height: 205px;
+
+    border-radius: 16px;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.02),
+        transparent 50%,
+        rgba(0, 0, 0, 0.10)
+    );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   RESTAURANT NAME
+========================================= */
+
+.res-name {
+    font-size: 19px;
+    font-weight: 750;
+
+    color: #171717;
+
+    margin: 17px 8px 7px;
+
+    line-height: 1.25;
+
+    letter-spacing: -0.25px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   CUISINES
+========================================= */
+
+.cuisins {
+    color: #777777;
+
+    font-size: 13.5px;
+
+    margin: 0 8px;
+
+    line-height: 1.5;
+
+    min-height: 21px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   CARD BOTTOM INFORMATION
+========================================= */
+
+.rating {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #159f6b;
+    color: #ffffff;
+
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    margin: 16px 5px 14px 8px;
+
+    font-size: 12.5px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    box-shadow: 0 3px 8px rgba(21, 159, 107, 0.18);
+}
+
+
+/* =========================================
+   PRICE
+========================================= */
+
+.price {
+    color: #555555;
+
+    font-size: 13.5px;
+
+    margin: 8px 8px 0;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   DELIVERY TIME
+========================================= */
+
+.time {
+    display: inline-flex;
+    align-items: center;
+
+    color: #777777;
+
+    font-size: 13px;
+
+    margin: 16px 5px 14px 0;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   CARD CONTENT ALIGNMENT
+========================================= */
+
+.res-card .rating + .time {
+    vertical-align: middle;
+}
+
+
+/* =========================================
+   SUBTLE DIVIDER
+========================================= */
+
+.res-card .price {
+    padding-top: 10px;
+
+    border-top: 1px solid #f2f2f2;
+}
+
+
+/* =========================================
+   CARD HOVER DETAILS
+========================================= */
+
+.res-card:hover .res-name {
+    color: #ff6b35;
+    transition: color 0.25s ease;
+}
+
+
+/* =========================================
+   RESTAURANT GRID
+========================================= */
+
+.res-container {
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 28px;
+
+    padding: 5px 0;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .res-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .res-card img,
+    .res-logo {
+        height: 190px;
+    }
+
+    .res-card::after {
+        height: 190px;
+    }
+}
+
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media (max-width: 800px) {
+
+    .res-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .res-card {
+        border-radius: 19px;
+        padding: 8px;
+    }
+
+    .res-card img,
+    .res-logo {
+        height: 190px;
+        border-radius: 14px;
+    }
+
+    .res-card::after {
+        top: 8px;
+        left: 8px;
+        right: 8px;
+
+        height: 190px;
+
+        border-radius: 14px;
+    }
+
+    .res-name {
+        font-size: 18px;
+        margin-top: 15px;
+    }
+
+    .cuisins {
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .res-container {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 14px;
+    }
+
+    .res-card {
+        border-radius: 17px;
+
+        padding: 7px;
+
+        box-shadow:
+            0 3px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .res-card:hover {
+        transform: translateY(-4px);
+
+        box-shadow:
+            0 8px 20px rgba(0, 0, 0, 0.09);
+    }
+
+    .res-card img,
+    .res-logo {
+        height: 145px;
+
+        border-radius: 12px;
+    }
+
+    .res-card::after {
+        top: 7px;
+        left: 7px;
+        right: 7px;
+
+        height: 145px;
+
+        border-radius: 12px;
+    }
+
+    .res-name {
+        font-size: 16px;
+
+        margin: 13px 6px 5px;
+    }
+
+    .cuisins {
+        font-size: 12px;
+
+        margin: 0 6px;
+
+        min-height: 18px;
+    }
+
+    .rating {
+        font-size: 11px;
+
+        padding: 5px 8px;
+
+        margin: 12px 3px 11px 6px;
+    }
+
+    .time {
+        font-size: 11px;
+
+        margin: 12px 3px 11px 0;
+    }
+
+    .price {
+        font-size: 12px;
+
+        margin-left: 6px;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+    .res-container {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 11px;
+    }
+
+    .res-card {
+        padding: 6px;
+
+        border-radius: 15px;
+    }
+
+    .res-card img,
+    .res-logo {
+        height: 125px;
+
+        border-radius: 11px;
+    }
+
+    .res-card::after {
+        top: 6px;
+        left: 6px;
+        right: 6px;
+
+        height: 125px;
+
+        border-radius: 11px;
+    }
+
+    .res-name {
+        font-size: 15px;
+
+        margin: 11px 5px 4px;
+    }
+
+    .cuisins {
+        font-size: 11px;
+
+        margin: 0 5px;
+    }
+
+    .rating {
+        font-size: 10px;
+
+        padding: 4px 7px;
+
+        margin: 10px 2px 9px 5px;
+    }
+
+    .time {
+        font-size: 10px;
+
+        margin: 10px 2px 9px 0;
+    }
+
+    .price {
+        font-size: 11px;
+    }
+}
