@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "./CartContext";
+import { useOrders } from "./OrderContext";
 
 import { FaGooglePay } from "react-icons/fa";
 import { SiPhonepe, SiPaytm } from "react-icons/si";
 import { MdOutlinePayments } from "react-icons/md";
+
 import {
     FaRegCreditCard,
     FaCalendarAlt,
@@ -15,10 +18,27 @@ import {
 
 import "../styles/Payment.css";
 
-const Payment = () => {
+const PaymentPage = () => {
     const navigate = useNavigate();
 
-    const [selectedPayment, setSelectedPayment] = useState(null);
+    // ========================================
+    // CART
+    // ========================================
+
+    const { cart, clearCart } = useCart();
+
+    // ========================================
+    // ORDERS
+    // ========================================
+
+    const { addOrder } = useOrders();
+
+    // ========================================
+    // PAYMENT STATE
+    // ========================================
+
+    const [selectedPayment, setSelectedPayment] =
+        useState(null);
 
     const [cardDetails, setCardDetails] = useState({
         cardNumber: "",
@@ -26,32 +46,68 @@ const Payment = () => {
         cvv: "",
     });
 
+    // ========================================
+    // CALCULATE TOTALS
+    // ========================================
+
+    const subtotal = cart.reduce(
+        (sum, item) =>
+            sum +
+            Number(item.price) *
+                Number(item.quantity),
+        0
+    );
+
+    const tax = subtotal * 0.1;
+
+    const deliveryFee = subtotal > 0 ? 5 : 0;
+
+    const total =
+        subtotal +
+        tax +
+        deliveryFee;
+
+    // ========================================
+    // PAYMENT METHODS
+    // ========================================
+
     const paymentMethods = [
         {
             name: "Google Pay",
-            subtitle: "Pay securely using Google Pay",
+            subtitle:
+                "Pay securely using Google Pay",
             icon: <FaGooglePay />,
             className: "gpay",
         },
+
         {
             name: "PhonePe",
-            subtitle: "Fast and secure UPI payment",
+            subtitle:
+                "Fast and secure UPI payment",
             icon: <SiPhonepe />,
             className: "phonepe",
         },
+
         {
             name: "Paytm",
-            subtitle: "Pay using your Paytm wallet",
+            subtitle:
+                "Pay using your Paytm wallet",
             icon: <SiPaytm />,
             className: "paytm",
         },
+
         {
             name: "Cash on Delivery",
-            subtitle: "Pay when your order arrives",
+            subtitle:
+                "Pay when your order arrives",
             icon: <MdOutlinePayments />,
             className: "cod",
         },
     ];
+
+    // ========================================
+    // ONLINE PAYMENT CHECK
+    // ========================================
 
     const isOnlinePayment = [
         "Google Pay",
@@ -59,46 +115,40 @@ const Payment = () => {
         "Paytm",
     ].includes(selectedPayment);
 
-    const handlePayment = () => {
-        if (!selectedPayment) {
-            alert("Please select a payment method.");
-            return;
-        }
+    // ========================================
+    // FORMAT CARD NUMBER
+    // ========================================
 
-        if (
-            isOnlinePayment &&
-            (!cardDetails.cardNumber ||
-                !cardDetails.expiryDate ||
-                !cardDetails.cvv)
-        ) {
-            alert("Please enter your payment details.");
-            return;
-        }
-
-        alert(`Payment via ${selectedPayment} is successful! 🎉`);
-
-        navigate("/");
+    const formatCardNumber = (value) => {
+        return value
+            .replace(/\D/g, "")
+            .replace(/(.{4})/g, "$1 ")
+            .trim();
     };
+
+    // ========================================
+    // CARD NUMBER
+    // ========================================
 
     const handleCardNumber = (e) => {
-        let value = e.target.value.replace(/\D/g, "");
+        let value = e.target.value
+            .replace(/\D/g, "")
+            .slice(0, 16);
 
-        if (value.length > 16) {
-            value = value.slice(0, 16);
-        }
-
-        setCardDetails({
-            ...cardDetails,
+        setCardDetails((previous) => ({
+            ...previous,
             cardNumber: value,
-        });
+        }));
     };
 
-    const handleExpiry = (e) => {
-        let value = e.target.value.replace(/\D/g, "");
+    // ========================================
+    // EXPIRY DATE
+    // ========================================
 
-        if (value.length > 4) {
-            value = value.slice(0, 4);
-        }
+    const handleExpiry = (e) => {
+        let value = e.target.value
+            .replace(/\D/g, "")
+            .slice(0, 4);
 
         if (value.length >= 3) {
             value =
@@ -107,44 +157,167 @@ const Payment = () => {
                 value.substring(2);
         }
 
-        setCardDetails({
-            ...cardDetails,
+        setCardDetails((previous) => ({
+            ...previous,
             expiryDate: value,
-        });
+        }));
     };
+
+    // ========================================
+    // CVV
+    // ========================================
 
     const handleCVV = (e) => {
-        let value = e.target.value.replace(/\D/g, "");
+        let value = e.target.value
+            .replace(/\D/g, "")
+            .slice(0, 3);
 
-        if (value.length > 3) {
-            value = value.slice(0, 3);
+        setCardDetails((previous) => ({
+            ...previous,
+            cvv: value,
+        }));
+    };
+
+    // ========================================
+    // HANDLE PAYMENT
+    // ========================================
+
+    const handlePayment = () => {
+        // No payment method
+        if (!selectedPayment) {
+            alert(
+                "Please select a payment method."
+            );
+            return;
         }
 
-        setCardDetails({
-            ...cardDetails,
-            cvv: value,
+        // Empty cart
+        if (cart.length === 0) {
+            alert("Your cart is empty.");
+            navigate("/");
+            return;
+        }
+
+        // Online payment validation
+        if (isOnlinePayment) {
+            if (
+                cardDetails.cardNumber.length !==
+                16
+            ) {
+                alert(
+                    "Please enter a valid 16-digit card number."
+                );
+                return;
+            }
+
+            if (
+                cardDetails.expiryDate.length !==
+                5
+            ) {
+                alert(
+                    "Please enter a valid expiry date."
+                );
+                return;
+            }
+
+            if (
+                cardDetails.cvv.length !== 3
+            ) {
+                alert(
+                    "Please enter a valid 3-digit CVV."
+                );
+                return;
+            }
+        }
+
+        // ========================================
+        // CREATE ORDER
+        // ========================================
+
+        addOrder({
+            items: cart,
+
+            subtotal: Number(
+                subtotal.toFixed(2)
+            ),
+
+            tax: Number(
+                tax.toFixed(2)
+            ),
+
+            deliveryFee: Number(
+                deliveryFee.toFixed(2)
+            ),
+
+            total: Number(
+                total.toFixed(2)
+            ),
+
+            paymentMethod:
+                selectedPayment,
+
+            address: "Home",
+
+            customerAddress:
+                "66, 3rd Flr, Bldg No-3, Sabu-Siddik Road, Near Carnac Bridge",
         });
+
+        // ========================================
+        // CLEAR CART
+        // ========================================
+
+        clearCart();
+
+        // ========================================
+        // SUCCESS MESSAGE
+        // ========================================
+
+        alert(
+            `Payment via ${selectedPayment} is successful! 🎉`
+        );
+
+        // ========================================
+        // GO TO MY ORDERS
+        // ========================================
+
+        navigate("/my-orders");
     };
+
+    // ========================================
+    // JSX
+    // ========================================
 
     return (
         <div className="payment-page">
 
-            {/* Back Button */}
+            {/* =================================
+                BACK BUTTON
+            ================================= */}
 
             <button
                 className="payment-back"
-                onClick={() => navigate("/checkout")}
+                onClick={() =>
+                    navigate("/checkout")
+                }
             >
                 <FaArrowLeft />
+
                 Back to Checkout
             </button>
 
+            {/* =================================
+                PAYMENT WRAPPER
+            ================================= */}
 
             <div className="payment-wrapper">
 
-                {/* LEFT SIDE */}
+                {/* =================================
+                    LEFT SIDE
+                ================================= */}
 
                 <div className="payment-main">
+
+                    {/* HEADING */}
 
                     <div className="payment-heading">
 
@@ -153,20 +326,27 @@ const Payment = () => {
                         </div>
 
                         <div>
-                            <h1>Choose Payment Method</h1>
+                            <h1>
+                                Choose Payment Method
+                            </h1>
+
                             <p>
-                                Select your preferred way to pay securely
+                                Select your preferred
+                                way to pay securely
                             </p>
                         </div>
 
                     </div>
 
-
-                    {/* Payment Methods */}
+                    {/* =================================
+                        PAYMENT OPTIONS
+                    ================================= */}
 
                     <div className="payment-section">
 
-                        <h2>Payment Options</h2>
+                        <h2>
+                            Payment Options
+                        </h2>
 
                         <div className="payment-options">
 
@@ -181,12 +361,15 @@ const Payment = () => {
                                     <div
                                         key={name}
                                         className={`payment-option ${
-                                            selectedPayment === name
+                                            selectedPayment ===
+                                            name
                                                 ? "selected"
                                                 : ""
                                         }`}
                                         onClick={() =>
-                                            setSelectedPayment(name)
+                                            setSelectedPayment(
+                                                name
+                                            )
                                         }
                                     >
 
@@ -196,15 +379,17 @@ const Payment = () => {
                                             {icon}
                                         </div>
 
-
                                         <div className="method-info">
 
-                                            <h3>{name}</h3>
+                                            <h3>
+                                                {name}
+                                            </h3>
 
-                                            <p>{subtitle}</p>
+                                            <p>
+                                                {subtitle}
+                                            </p>
 
                                         </div>
-
 
                                         <div className="method-radio">
 
@@ -216,7 +401,6 @@ const Payment = () => {
                                         </div>
 
                                     </div>
-
                                 )
                             )}
 
@@ -224,8 +408,9 @@ const Payment = () => {
 
                     </div>
 
-
-                    {/* Card / Payment Details */}
+                    {/* =================================
+                        PAYMENT DETAILS
+                    ================================= */}
 
                     {isOnlinePayment && (
 
@@ -234,24 +419,29 @@ const Payment = () => {
                             <div className="details-heading">
 
                                 <div>
-                                    <h2>Payment Details</h2>
+
+                                    <h2>
+                                        Payment Details
+                                    </h2>
 
                                     <p>
-                                        Enter your card details to
-                                        continue
+                                        Enter your card
+                                        details to continue
                                     </p>
+
                                 </div>
 
                                 <FaShieldAlt />
 
                             </div>
 
-
-                            {/* Card Number */}
+                            {/* CARD NUMBER */}
 
                             <div className="input-group">
 
-                                <label>Card Number</label>
+                                <label>
+                                    Card Number
+                                </label>
 
                                 <div className="payment-input">
 
@@ -259,8 +449,11 @@ const Payment = () => {
 
                                     <input
                                         type="text"
+                                        inputMode="numeric"
                                         placeholder="1234 5678 9012 3456"
-                                        value={cardDetails.cardNumber}
+                                        value={formatCardNumber(
+                                            cardDetails.cardNumber
+                                        )}
                                         onChange={
                                             handleCardNumber
                                         }
@@ -270,14 +463,17 @@ const Payment = () => {
 
                             </div>
 
+                            {/* EXPIRY + CVV */}
 
                             <div className="card-row">
 
-                                {/* Expiry */}
+                                {/* EXPIRY */}
 
                                 <div className="input-group">
 
-                                    <label>Expiry Date</label>
+                                    <label>
+                                        Expiry Date
+                                    </label>
 
                                     <div className="payment-input">
 
@@ -285,6 +481,7 @@ const Payment = () => {
 
                                         <input
                                             type="text"
+                                            inputMode="numeric"
                                             placeholder="MM/YY"
                                             maxLength="5"
                                             value={
@@ -299,12 +496,13 @@ const Payment = () => {
 
                                 </div>
 
-
                                 {/* CVV */}
 
                                 <div className="input-group">
 
-                                    <label>CVV</label>
+                                    <label>
+                                        CVV
+                                    </label>
 
                                     <div className="payment-input">
 
@@ -312,6 +510,7 @@ const Payment = () => {
 
                                         <input
                                             type="password"
+                                            inputMode="numeric"
                                             placeholder="•••"
                                             maxLength="3"
                                             value={
@@ -328,24 +527,26 @@ const Payment = () => {
 
                             </div>
 
+                            {/* SECURE MESSAGE */}
 
                             <div className="secure-message">
 
                                 <FaShieldAlt />
 
                                 <span>
-                                    Your payment information is
+                                    Your payment
+                                    information is
                                     encrypted and secure.
                                 </span>
 
                             </div>
 
                         </div>
-
                     )}
 
-
-                    {/* QR */}
+                    {/* =================================
+                        QR CODE
+                    ================================= */}
 
                     {isOnlinePayment && (
 
@@ -353,11 +554,14 @@ const Payment = () => {
 
                             <div>
 
-                                <h2>Scan & Pay</h2>
+                                <h2>
+                                    Scan & Pay
+                                </h2>
 
                                 <p>
-                                    Scan the QR code using your
-                                    selected UPI app
+                                    Scan the QR code
+                                    using your selected
+                                    UPI app
                                 </p>
 
                             </div>
@@ -368,11 +572,11 @@ const Payment = () => {
                             />
 
                         </div>
-
                     )}
 
-
-                    {/* Confirm Button */}
+                    {/* =================================
+                        CONFIRM PAYMENT
+                    ================================= */}
 
                     <button
                         className="confirm-payment"
@@ -383,6 +587,9 @@ const Payment = () => {
                             : "Select Payment Method"}
                     </button>
 
+                    {/* =================================
+                        SECURITY
+                    ================================= */}
 
                     <div className="payment-security">
 
@@ -404,14 +611,17 @@ const Payment = () => {
 
                 </div>
 
-
-                {/* RIGHT SIDE */}
+                {/* =================================
+                    RIGHT SIDE
+                ================================= */}
 
                 <div className="payment-summary">
 
                     <div className="summary-top">
 
-                        <h2>Order Summary</h2>
+                        <h2>
+                            Order Summary
+                        </h2>
 
                         <span>
                             SwiftEats
@@ -419,6 +629,7 @@ const Payment = () => {
 
                     </div>
 
+                    {/* SUMMARY FOOD */}
 
                     <div className="summary-food">
 
@@ -428,61 +639,81 @@ const Payment = () => {
 
                         <div>
 
-                            <h3>Your SwiftEats Order</h3>
+                            <h3>
+                                Your SwiftEats Order
+                            </h3>
 
                             <p>
-                                Delicious food delivered
-                                to your doorstep
+                                Delicious food
+                                delivered to your
+                                doorstep
                             </p>
 
                         </div>
 
                     </div>
 
+                    <div className="summary-divider"></div>
+
+                    {/* SUBTOTAL */}
+
+                    <div className="price-row">
+
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <span>
+                            ₹{subtotal.toFixed(2)}
+                        </span>
+
+                    </div>
+
+                    {/* TAX */}
+
+                    <div className="price-row">
+
+                        <span>
+                            Tax (10%)
+                        </span>
+
+                        <span>
+                            ₹{tax.toFixed(2)}
+                        </span>
+
+                    </div>
+
+                    {/* DELIVERY */}
+
+                    <div className="price-row">
+
+                        <span>
+                            Delivery Fee
+                        </span>
+
+                        <span>
+                            ₹{deliveryFee.toFixed(2)}
+                        </span>
+
+                    </div>
 
                     <div className="summary-divider"></div>
 
-
-                    <div className="price-row">
-
-                        <span>Subtotal</span>
-
-                        <span>₹588.00</span>
-
-                    </div>
-
-
-                    <div className="price-row">
-
-                        <span>Tax (10%)</span>
-
-                        <span>₹58.80</span>
-
-                    </div>
-
-
-                    <div className="price-row">
-
-                        <span>Delivery Fee</span>
-
-                        <span>₹5.00</span>
-
-                    </div>
-
-
-                    <div className="summary-divider"></div>
-
+                    {/* TOTAL */}
 
                     <div className="total-row">
 
-                        <span>Total</span>
+                        <span>
+                            Total
+                        </span>
 
                         <strong>
-                            ₹651.80
+                            ₹{total.toFixed(2)}
                         </strong>
 
                     </div>
 
+                    {/* DELIVERY MESSAGE */}
 
                     <div className="delivery-message">
 
@@ -495,14 +726,16 @@ const Payment = () => {
                             </strong>
 
                             <p>
-                                Your order will be prepared
-                                shortly after payment.
+                                Your order will be
+                                prepared shortly
+                                after payment.
                             </p>
 
                         </div>
 
                     </div>
 
+                    {/* EDIT ORDER */}
 
                     <button
                         className="edit-order"
@@ -521,4 +754,4 @@ const Payment = () => {
     );
 };
 
-export default Payment;
+export default PaymentPage;

@@ -9,14 +9,52 @@ const CheckoutPage = () => {
 
     const [selectedAddress, setSelectedAddress] = useState("home");
 
+    // =================================
+    // CALCULATE TOTAL
+    // =================================
+
     const subtotal = cart.reduce(
-        (sum, item) => sum + item.price * item.quantity,
+        (sum, item) =>
+            sum + Number(item.price) * Number(item.quantity),
         0
     );
 
     const tax = subtotal * 0.1;
     const deliveryFee = subtotal > 0 ? 5 : 0;
     const total = subtotal + tax + deliveryFee;
+
+    // =================================
+    // PROCEED TO PAYMENT
+    // =================================
+
+    const handleProceedToPayment = () => {
+        if (cart.length === 0) {
+            alert("Your cart is empty.");
+            navigate("/");
+            return;
+        }
+
+        const addressData =
+            selectedAddress === "home"
+                ? {
+                      address: "Home",
+                      customerAddress:
+                          "66, 3rd Flr, Bldg No-3, Sabu-Siddik Road, Near Carnac Bridge",
+                  }
+                : {
+                      address: "Work",
+                      customerAddress:
+                          "Parkway Mountain View, California, United States",
+                  };
+
+        navigate("/payment", {
+            state: {
+                address: addressData.address,
+                customerAddress:
+                    addressData.customerAddress,
+            },
+        });
+    };
 
     return (
         <div className="checkout-page">
@@ -26,7 +64,9 @@ const CheckoutPage = () => {
             ================================= */}
 
             <div className="checkout-top">
+
                 <div>
+
                     <p className="checkout-small-title">
                         SWIFTEATS
                     </p>
@@ -38,11 +78,13 @@ const CheckoutPage = () => {
                     <p className="checkout-subtitle">
                         Complete your order in just a few steps
                     </p>
+
                 </div>
 
                 <div className="secure-badge">
                     🔒 Secure Checkout
                 </div>
+
             </div>
 
 
@@ -60,7 +102,9 @@ const CheckoutPage = () => {
                 <div className="checkout-left">
 
 
-                    {/* ADDRESS CARD */}
+                    {/* =================================
+                        DELIVERY ADDRESS
+                    ================================= */}
 
                     <section className="checkout-card">
 
@@ -71,17 +115,23 @@ const CheckoutPage = () => {
                             </div>
 
                             <div>
-                                <h2>Delivery Address</h2>
+
+                                <h2>
+                                    Delivery Address
+                                </h2>
 
                                 <p>
                                     Where should we deliver your order?
                                 </p>
+
                             </div>
 
                         </div>
 
 
-                        {/* HOME */}
+                        {/* =================================
+                            HOME
+                        ================================= */}
 
                         <div
                             className={`address-card ${
@@ -110,6 +160,7 @@ const CheckoutPage = () => {
 
                             </div>
 
+
                             <div className="address-content">
 
                                 <div className="address-name-row">
@@ -132,6 +183,7 @@ const CheckoutPage = () => {
 
                             </div>
 
+
                             {selectedAddress === "home" && (
                                 <div className="selected-check">
                                     ✓
@@ -141,7 +193,9 @@ const CheckoutPage = () => {
                         </div>
 
 
-                        {/* WORK */}
+                        {/* =================================
+                            WORK
+                        ================================= */}
 
                         <div
                             className={`address-card ${
@@ -170,6 +224,7 @@ const CheckoutPage = () => {
 
                             </div>
 
+
                             <div className="address-content">
 
                                 <div className="address-name-row">
@@ -188,6 +243,7 @@ const CheckoutPage = () => {
 
                             </div>
 
+
                             {selectedAddress === "work" && (
                                 <div className="selected-check">
                                     ✓
@@ -199,8 +255,9 @@ const CheckoutPage = () => {
                     </section>
 
 
-
-                    {/* DELIVERY INFORMATION */}
+                    {/* =================================
+                        DELIVERY INFORMATION
+                    ================================= */}
 
                     <section className="checkout-card delivery-info">
 
@@ -211,15 +268,20 @@ const CheckoutPage = () => {
                             </div>
 
                             <div>
-                                <h3>Fast Delivery</h3>
+
+                                <h3>
+                                    Fast Delivery
+                                </h3>
 
                                 <p>
                                     Your food will be delivered
                                     fresh and hot to your selected address.
                                 </p>
+
                             </div>
 
                         </div>
+
 
                         <div className="info-box">
 
@@ -228,12 +290,16 @@ const CheckoutPage = () => {
                             </div>
 
                             <div>
-                                <h3>Safe & Secure</h3>
+
+                                <h3>
+                                    Safe & Secure
+                                </h3>
 
                                 <p>
                                     Your payment and personal
                                     information are protected.
                                 </p>
+
                             </div>
 
                         </div>
@@ -243,7 +309,6 @@ const CheckoutPage = () => {
                 </div>
 
 
-
                 {/* =================================
                     RIGHT SIDE
                 ================================= */}
@@ -251,6 +316,11 @@ const CheckoutPage = () => {
                 <div className="checkout-right">
 
                     <section className="order-card">
+
+
+                        {/* =================================
+                            ORDER HEADER
+                        ================================= */}
 
                         <div className="order-card-header">
 
@@ -274,7 +344,9 @@ const CheckoutPage = () => {
                         </div>
 
 
-                        {/* CART ITEMS */}
+                        {/* =================================
+                            CART ITEMS
+                        ================================= */}
 
                         <div className="checkout-items">
 
@@ -290,6 +362,7 @@ const CheckoutPage = () => {
                                         alt={item.dish}
                                     />
 
+
                                     <div className="checkout-item-info">
 
                                         <h3>
@@ -298,18 +371,23 @@ const CheckoutPage = () => {
 
                                         <p>
                                             ₹
-                                            {item.price.toFixed(2)}
+                                            {Number(
+                                                item.price
+                                            ).toFixed(2)}
+
                                             {" "}×{" "}
+
                                             {item.quantity}
                                         </p>
 
                                     </div>
 
+
                                     <strong>
                                         ₹
                                         {(
-                                            item.price *
-                                            item.quantity
+                                            Number(item.price) *
+                                            Number(item.quantity)
                                         ).toFixed(2)}
                                     </strong>
 
@@ -320,25 +398,37 @@ const CheckoutPage = () => {
                         </div>
 
 
-                        {/* PRICE */}
+                        {/* =================================
+                            PRICE
+                        ================================= */}
 
                         <div className="price-section">
 
                             <div className="price-row">
-                                <span>Subtotal</span>
+
+                                <span>
+                                    Subtotal
+                                </span>
 
                                 <span>
                                     ₹{subtotal.toFixed(2)}
                                 </span>
+
                             </div>
 
+
                             <div className="price-row">
-                                <span>Tax (10%)</span>
+
+                                <span>
+                                    Tax (10%)
+                                </span>
 
                                 <span>
                                     ₹{tax.toFixed(2)}
                                 </span>
+
                             </div>
+
 
                             <div className="price-row">
 
@@ -355,13 +445,17 @@ const CheckoutPage = () => {
                         </div>
 
 
-                        {/* TOTAL */}
+                        {/* =================================
+                            TOTAL
+                        ================================= */}
 
                         <div className="grand-total">
 
                             <div>
 
-                                <span>Total Amount</span>
+                                <span>
+                                    Total Amount
+                                </span>
 
                                 <small>
                                     Inclusive of all charges
@@ -376,13 +470,13 @@ const CheckoutPage = () => {
                         </div>
 
 
-                        {/* PAY BUTTON */}
+                        {/* =================================
+                            PAY BUTTON
+                        ================================= */}
 
                         <button
                             className="pay-now"
-                            onClick={() =>
-                                navigate("/payment")
-                            }
+                            onClick={handleProceedToPayment}
                         >
 
                             <span>

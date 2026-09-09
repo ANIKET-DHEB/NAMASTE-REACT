@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import {
-  createBrowserRouter,
-  RouterProvider,
-  Outlet,
+    createBrowserRouter,
+    RouterProvider,
+    Outlet,
+    useLocation,
 } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -15,9 +16,13 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Footers from "./components/Footers";
 
 import { CartProvider } from "./components/CartContext";
+import { OrderProvider } from "./components/OrderContext";
+import { WishlistProvider } from "./components/WishlistContext";
+
 import CartPage from "./components/CartPage";
 import CheckoutPage from "./components/CheckoutPage";
 import PaymentPage from "./components/PaymentPage";
+import MyOrders from "./components/MyOrders";
 
 import "./styles/Global.css";
 import "./styles/Header.css";
@@ -29,71 +34,163 @@ import "./styles/RestaurantMenu.css";
 import "./styles/Cart.css";
 import "./styles/Checkout.css";
 import "./styles/Payment.css";
+import "./styles/MyOrders.css";
 
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Header />
-      <Outlet />
-      <Footers />
-    </div>
-  );
+
+// ========================================
+// SCROLL TO TOP
+// ========================================
+
+const ScrollToTop = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "instant",
+        });
+    }, [pathname]);
+
+    return null;
 };
 
+
+// ========================================
+// APP LAYOUT
+// ========================================
+
+const AppLayout = () => {
+    return (
+        <div className="app">
+
+            <ScrollToTop />
+
+            <Header />
+
+            <Outlet />
+
+            <Footers />
+
+        </div>
+    );
+};
+
+
+// ========================================
+// ROUTER
+// ========================================
+
 const appRouter = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <CartProvider>
-        <AppLayout />
-      </CartProvider>
-    ),
-
-    children: [
-      {
+    {
         path: "/",
-        element: <Body />,
-      },
 
-      {
-        path: "/about",
-        element: <About />,
-      },
+        element: (
+            <WishlistProvider>
+                <CartProvider>
+                    <OrderProvider>
+                        <AppLayout />
+                    </OrderProvider>
+                </CartProvider>
+            </WishlistProvider>
+        ),
 
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
+        children: [
 
-      {
-        path: "/restaurant/:resId",
-        element: <RestaurantMenu />,
-      },
+            // ========================================
+            // HOME
+            // ========================================
 
-      {
-        path: "/cart",
-        element: <CartPage />,
-      },
+            {
+                path: "/",
+                element: <Body />,
+            },
 
-      {
-        path: "/checkout",
-        element: <CheckoutPage />,
-      },
 
-      {
-        path: "/payment",
-        element: <PaymentPage />,
-      },
-    ],
+            // ========================================
+            // ABOUT
+            // ========================================
 
-    errorElement: <Error />,
-  },
+            {
+                path: "/about",
+                element: <About />,
+            },
+
+
+            // ========================================
+            // CONTACT
+            // ========================================
+
+            {
+                path: "/contact",
+                element: <Contact />,
+            },
+
+
+            // ========================================
+            // RESTAURANT MENU
+            // ========================================
+
+            {
+                path: "/restaurant/:resId",
+                element: <RestaurantMenu />,
+            },
+
+
+            // ========================================
+            // CART
+            // ========================================
+
+            {
+                path: "/cart",
+                element: <CartPage />,
+            },
+
+
+            // ========================================
+            // CHECKOUT
+            // ========================================
+
+            {
+                path: "/checkout",
+                element: <CheckoutPage />,
+            },
+
+
+            // ========================================
+            // PAYMENT
+            // ========================================
+
+            {
+                path: "/payment",
+                element: <PaymentPage />,
+            },
+
+
+            // ========================================
+            // MY ORDERS
+            // ========================================
+
+            {
+                path: "/my-orders",
+                element: <MyOrders />,
+            },
+
+        ],
+
+        errorElement: <Error />,
+    },
 ]);
 
+
+// ========================================
+// ROOT
+// ========================================
+
 const root = ReactDOM.createRoot(
-  document.getElementById("root")
+    document.getElementById("root")
 );
 
 root.render(
-  <RouterProvider router={appRouter} />
-); 
+    <RouterProvider router={appRouter} />
+);
