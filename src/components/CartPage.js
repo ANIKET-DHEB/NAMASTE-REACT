@@ -1,5 +1,6 @@
 import { useCart } from "../components/CartContext";
 import { useNavigate } from "react-router-dom";
+
 import "../styles/Cart.css";
 
 const CartPage = () => {
@@ -35,7 +36,9 @@ const CartPage = () => {
                         🛒
                     </div>
 
-                    <h2>Your cart is empty</h2>
+                    <h2>
+                        Your cart is empty
+                    </h2>
 
                     <p>
                         Looks like you haven't added
@@ -43,7 +46,8 @@ const CartPage = () => {
                     </p>
 
                     <button
-                        className="shop-more"
+                        type="button"
+                        className="browse-restaurants-btn"
                         onClick={() => navigate("/")}
                     >
                         Browse Restaurants
@@ -52,7 +56,7 @@ const CartPage = () => {
                 </div>
             ) : (
                 <>
-                    {/* CART ITEMS */}
+                    {/* ================= CART ITEMS ================= */}
 
                     <div className="cart-items">
 
@@ -81,6 +85,7 @@ const CartPage = () => {
                                     <div className="cart-quantity">
 
                                         <button
+                                            type="button"
                                             onClick={() =>
                                                 decreaseQuantity(index)
                                             }
@@ -93,6 +98,7 @@ const CartPage = () => {
                                         </span>
 
                                         <button
+                                            type="button"
                                             onClick={() =>
                                                 increaseQuantity(index)
                                             }
@@ -115,6 +121,7 @@ const CartPage = () => {
                                     </strong>
 
                                     <button
+                                        type="button"
                                         className="remove-btn"
                                         onClick={() =>
                                             removeFromCart(index)
@@ -130,12 +137,15 @@ const CartPage = () => {
 
                     </div>
 
-                    {/* SUMMARY */}
+
+                    {/* ================= SUMMARY ================= */}
 
                     <div className="cart-summary">
 
                         <div className="summary-item">
-                            <span>Subtotal</span>
+                            <span>
+                                Subtotal
+                            </span>
 
                             <span>
                                 ₹{subtotal.toFixed(2)}
@@ -143,7 +153,9 @@ const CartPage = () => {
                         </div>
 
                         <div className="summary-item">
-                            <span>Tax (10%)</span>
+                            <span>
+                                Tax (10%)
+                            </span>
 
                             <span>
                                 ₹{tax.toFixed(2)}
@@ -151,7 +163,9 @@ const CartPage = () => {
                         </div>
 
                         <div className="summary-item">
-                            <span>Delivery</span>
+                            <span>
+                                Delivery
+                            </span>
 
                             <span>
                                 ₹{deliveryFee.toFixed(2)}
@@ -159,7 +173,9 @@ const CartPage = () => {
                         </div>
 
                         <div className="summary-item total">
-                            <span>Total</span>
+                            <span>
+                                Total
+                            </span>
 
                             <span>
                                 ₹{total.toFixed(2)}
@@ -168,7 +184,8 @@ const CartPage = () => {
 
                     </div>
 
-                    {/* BUTTONS */}
+
+                    {/* ================= BUTTONS ================= */}
 
                     <div className="cart-buttons">
 
@@ -183,7 +200,9 @@ const CartPage = () => {
                         <button
                             type="button"
                             className="checkout"
-                            onClick={() => navigate("/checkout")}
+                            onClick={() =>
+                                navigate("/checkout")
+                            }
                         >
                             Checkout →
                         </button>

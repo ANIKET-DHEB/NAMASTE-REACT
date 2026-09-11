@@ -604,3 +604,62 @@
         font-size: 11px;
     }
 }
+
+/* =========================================================
+   EMPTY CART - BROWSE RESTAURANTS BUTTON
+   ========================================================= */
+
+.browse-restaurants-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 20px;
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #ff6433;
+    color: #ffffff;
+
+    font-family: "Inter", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 6px 18px rgba(255, 100, 51, 0.18);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.browse-restaurants-btn:hover {
+    background: #f45121;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 9px 22px rgba(255, 100, 51, 0.25);
+}
+
+.browse-restaurants-btn:active {
+    transform: translateY(0);
+}
+
+.browse-restaurants-btn:focus-visible {
+    outline: 3px solid rgba(255, 100, 51, 0.25);
+    outline-offset: 3px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 500px) {
+    .browse-restaurants-btn {
+        width: 100%;
+        max-width: 260px;
+    }
+}
